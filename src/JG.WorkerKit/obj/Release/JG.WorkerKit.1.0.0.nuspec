@@ -9,7 +9,7 @@
     <readme>README.md</readme>
     <description>A background job queue and scheduled task runner for .NET 8.</description>
     <tags>background jobs queue scheduler cron</tags>
-    <repository type="git" url="https://github.com/jamesgober/dotnet-worker-kit" commit="0bbcfaf1807c4748cb768a16287abf817f827af1" />
+    <repository type="git" url="https://github.com/jamesgober/dotnet-worker-kit" commit="1616eb601526a509214f6a9b393c63c2a57cae61" />
     <dependencies>
       <group targetFramework="net8.0">
         <dependency id="Microsoft.Extensions.Hosting" version="8.0.0" exclude="Build,Analyzers" />

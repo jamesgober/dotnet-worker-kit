@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("JG.WorkerKit.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0bbcfaf1807c4748cb768a16287abf817f827af1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1616eb601526a509214f6a9b393c63c2a57cae61")]
 [assembly: System.Reflection.AssemblyProductAttribute("JG.WorkerKit.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("JG.WorkerKit.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

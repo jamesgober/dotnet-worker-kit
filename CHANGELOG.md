@@ -26,8 +26,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Source-generated LoggerMessage for all log points
 - CronExpression parser for 5-field cron expressions
 - Thread-safe, async-native design with ConfigureAwait(false)
-
-## [0.1.0] - YYYY-MM-DD
-
-### Added
-- Initial project scaffolding, documentation structure, and license
+- 
+[Unreleased]: https://github.com/jamesgober/dotnet-worker-kit/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/jamesgober/dotnet-worker-kit/releases/tag/v1.0.0
