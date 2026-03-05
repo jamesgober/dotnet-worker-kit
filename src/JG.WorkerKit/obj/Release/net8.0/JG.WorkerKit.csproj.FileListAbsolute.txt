@@ -1,0 +1,15 @@
+C:\Dev\libs\dotnet\dotnet-worker-kit\src\JG.WorkerKit\bin\Release\net8.0\JG.WorkerKit.deps.json
+C:\Dev\libs\dotnet\dotnet-worker-kit\src\JG.WorkerKit\bin\Release\net8.0\JG.WorkerKit.dll
+C:\Dev\libs\dotnet\dotnet-worker-kit\src\JG.WorkerKit\bin\Release\net8.0\JG.WorkerKit.pdb
+C:\Dev\libs\dotnet\dotnet-worker-kit\src\JG.WorkerKit\bin\Release\net8.0\JG.WorkerKit.xml
+C:\Dev\libs\dotnet\dotnet-worker-kit\src\JG.WorkerKit\obj\Release\net8.0\JG.WorkerKit.csproj.AssemblyReference.cache
+C:\Dev\libs\dotnet\dotnet-worker-kit\src\JG.WorkerKit\obj\Release\net8.0\JG.WorkerKit.GeneratedMSBuildEditorConfig.editorconfig
+C:\Dev\libs\dotnet\dotnet-worker-kit\src\JG.WorkerKit\obj\Release\net8.0\JG.WorkerKit.AssemblyInfoInputs.cache
+C:\Dev\libs\dotnet\dotnet-worker-kit\src\JG.WorkerKit\obj\Release\net8.0\JG.WorkerKit.AssemblyInfo.cs
+C:\Dev\libs\dotnet\dotnet-worker-kit\src\JG.WorkerKit\obj\Release\net8.0\JG.WorkerKit.csproj.CoreCompileInputs.cache
+C:\Dev\libs\dotnet\dotnet-worker-kit\src\JG.WorkerKit\obj\Release\net8.0\JG.WorkerKit.sourcelink.json
+C:\Dev\libs\dotnet\dotnet-worker-kit\src\JG.WorkerKit\obj\Release\net8.0\JG.WorkerKit.dll
+C:\Dev\libs\dotnet\dotnet-worker-kit\src\JG.WorkerKit\obj\Release\net8.0\refint\JG.WorkerKit.dll
+C:\Dev\libs\dotnet\dotnet-worker-kit\src\JG.WorkerKit\obj\Release\net8.0\JG.WorkerKit.xml
+C:\Dev\libs\dotnet\dotnet-worker-kit\src\JG.WorkerKit\obj\Release\net8.0\JG.WorkerKit.pdb
+C:\Dev\libs\dotnet\dotnet-worker-kit\src\JG.WorkerKit\obj\Release\net8.0\ref\JG.WorkerKit.dll

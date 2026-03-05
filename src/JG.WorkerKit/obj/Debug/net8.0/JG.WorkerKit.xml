@@ -1,0 +1,483 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JG.WorkerKit</name>
+    </assembly>
+    <members>
+        <member name="T:JG.WorkerKit.IJobHandler`1">
+            <summary>
+            Defines a handler for a job with typed data.
+            </summary>
+            <typeparam name="TData">The type of the job data.</typeparam>
+        </member>
+        <member name="M:JG.WorkerKit.IJobHandler`1.HandleAsync(`0,JG.WorkerKit.JobContext,System.Threading.CancellationToken)">
+            <summary>
+            Handles the job execution.
+            </summary>
+            <param name="data">The job data.</param>
+            <param name="context">The job execution context.</param>
+            <param name="cancellationToken">A cancellation token.</param>
+            <returns>A task representing the job execution.</returns>
+        </member>
+        <member name="T:JG.WorkerKit.IJobMiddleware">
+            <summary>
+            Defines middleware for job execution.
+            </summary>
+        </member>
+        <member name="M:JG.WorkerKit.IJobMiddleware.InvokeAsync(JG.WorkerKit.JobContext,System.Func{System.Threading.Tasks.ValueTask})">
+            <summary>
+            Invokes the middleware.
+            </summary>
+            <param name="context">The job context.</param>
+            <param name="next">The next middleware in the pipeline.</param>
+            <returns>A task representing the middleware execution.</returns>
+        </member>
+        <member name="T:JG.WorkerKit.IJobQueue">
+            <summary>
+            Represents a job queue for enqueuing background work items.
+            </summary>
+        </member>
+        <member name="M:JG.WorkerKit.IJobQueue.EnqueueAsync``2(``1,JG.WorkerKit.JobOptions,System.Threading.CancellationToken)">
+            <summary>
+            Enqueues a job for asynchronous execution.
+            </summary>
+            <typeparam name="TJob">The type of the job handler.</typeparam>
+            <typeparam name="TData">The type of the job data.</typeparam>
+            <param name="data">The data to pass to the job handler.</param>
+            <param name="options">Optional job options.</param>
+            <param name="cancellationToken">A cancellation token.</param>
+            <returns>A task representing the enqueue operation.</returns>
+        </member>
+        <member name="T:JG.WorkerKit.IScheduledTask">
+            <summary>
+            Defines a scheduled task that can be executed on a recurring basis.
+            </summary>
+        </member>
+        <member name="M:JG.WorkerKit.IScheduledTask.ExecuteAsync(System.Threading.CancellationToken)">
+            <summary>
+            Executes the scheduled task.
+            </summary>
+            <param name="cancellationToken">A cancellation token.</param>
+            <returns>A task representing the task execution.</returns>
+        </member>
+        <member name="T:JG.WorkerKit.IScheduler">
+            <summary>
+            Represents a scheduler for recurring jobs.
+            </summary>
+        </member>
+        <member name="M:JG.WorkerKit.IScheduler.AddRecurringJob``1(System.String)">
+            <summary>
+            Adds a recurring job with a cron expression.
+            </summary>
+            <typeparam name="TJob">The type of the scheduled task.</typeparam>
+            <param name="cronExpression">The cron expression defining the schedule.</param>
+        </member>
+        <member name="M:JG.WorkerKit.IScheduler.AddRecurringJob``1(System.TimeSpan)">
+            <summary>
+            Adds a recurring job with a time interval.
+            </summary>
+            <typeparam name="TJob">The type of the scheduled task.</typeparam>
+            <param name="interval">The interval between executions.</param>
+        </member>
+        <member name="T:JG.WorkerKit.Internal.IJobQueueInternal">
+            <summary>
+            Internal interface for job queue operations.
+            </summary>
+        </member>
+        <member name="M:JG.WorkerKit.Internal.IJobQueueInternal.DequeueAsync(System.Threading.CancellationToken)">
+            <summary>
+            Dequeues a job item from the queue.
+            </summary>
+            <param name="cancellationToken">A cancellation token.</param>
+            <returns>The dequeued job item, or null if the queue is complete.</returns>
+        </member>
+        <member name="M:JG.WorkerKit.Internal.IJobQueueInternal.Complete">
+            <summary>
+            Marks the queue as complete for writing.
+            </summary>
+        </member>
+        <member name="T:JG.WorkerKit.Internal.ISchedulerInternal">
+            <summary>
+            Internal interface for scheduler operations.
+            </summary>
+        </member>
+        <member name="M:JG.WorkerKit.Internal.ISchedulerInternal.StartAsync(System.Threading.CancellationToken)">
+            <summary>
+            Starts the scheduler.
+            </summary>
+            <param name="cancellationToken">A cancellation token.</param>
+            <returns>A task representing the operation.</returns>
+        </member>
+        <member name="T:JG.WorkerKit.Internal.JobItem">
+            <summary>
+            Represents a job item in the queue.
+            </summary>
+        </member>
+        <member name="M:JG.WorkerKit.Internal.JobItem.#ctor(System.Type,System.Object,JG.WorkerKit.JobOptions,System.Guid,System.DateTime)">
+            <summary>
+            Represents a job item in the queue.
+            </summary>
+        </member>
+        <member name="T:JG.WorkerKit.Internal.JobQueue">
+            <summary>
+            Internal implementation of the job queue.
+            </summary>
+        </member>
+        <member name="M:JG.WorkerKit.Internal.JobQueue.#ctor(Microsoft.Extensions.Options.IOptions{JG.WorkerKit.WorkerKitOptions})">
+            <summary>
+            Initializes a new instance of the <see cref="T:JG.WorkerKit.Internal.JobQueue"/> class.
+            </summary>
+            <param name="options">The worker kit options.</param>
+        </member>
+        <member name="M:JG.WorkerKit.Internal.JobQueue.EnqueueAsync``2(``1,JG.WorkerKit.JobOptions,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:JG.WorkerKit.Internal.JobQueue.DequeueAsync(System.Threading.CancellationToken)">
+            <summary>
+            Dequeues a job item.
+            </summary>
+            <param name="cancellationToken">A cancellation token.</param>
+            <returns>The dequeued item or null if the queue is completed.</returns>
+        </member>
+        <member name="M:JG.WorkerKit.Internal.JobQueue.Complete">
+            <summary>
+            Completes the channels for writing.
+            </summary>
+        </member>
+        <member name="T:JG.WorkerKit.Internal.Scheduler">
+            <summary>
+            Internal implementation of the scheduler.
+            </summary>
+        </member>
+        <member name="M:JG.WorkerKit.Internal.Scheduler.#ctor(System.IServiceProvider,Microsoft.Extensions.Logging.ILogger{JG.WorkerKit.Internal.Scheduler},System.Collections.Generic.IEnumerable{JG.WorkerKit.ScheduleEntry})">
+            <summary>
+            Initializes a new instance of the <see cref="T:JG.WorkerKit.Internal.Scheduler"/> class.
+            </summary>
+            <param name="serviceProvider">The service provider.</param>
+            <param name="logger">The logger.</param>
+            <param name="entries">The schedule entries.</param>
+        </member>
+        <member name="M:JG.WorkerKit.Internal.Scheduler.AddRecurringJob``1(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:JG.WorkerKit.Internal.Scheduler.AddRecurringJob``1(System.TimeSpan)">
+            <inheritdoc/>
+        </member>
+        <member name="M:JG.WorkerKit.Internal.Scheduler.StartAsync(System.Threading.CancellationToken)">
+            <summary>
+            Starts the scheduler.
+            </summary>
+            <param name="cancellationToken">A cancellation token.</param>
+            <returns>A task representing the operation.</returns>
+        </member>
+        <member name="T:JG.WorkerKit.Internal.WorkerKitHostedService">
+            <summary>
+            The hosted service for WorkerKit.
+            </summary>
+        </member>
+        <member name="M:JG.WorkerKit.Internal.WorkerKitHostedService.#ctor(JG.WorkerKit.IJobQueue,JG.WorkerKit.IScheduler,System.IServiceProvider,Microsoft.Extensions.Options.IOptions{JG.WorkerKit.WorkerKitOptions},Microsoft.Extensions.Logging.ILogger{JG.WorkerKit.Internal.WorkerKitHostedService},Microsoft.Extensions.Hosting.IHostApplicationLifetime,System.Collections.Generic.IEnumerable{JG.WorkerKit.IJobMiddleware})">
+            <summary>
+            Initializes a new instance of the <see cref="T:JG.WorkerKit.Internal.WorkerKitHostedService"/> class.
+            </summary>
+            <param name="jobQueue">The job queue.</param>
+            <param name="scheduler">The scheduler.</param>
+            <param name="serviceProvider">The service provider.</param>
+            <param name="options">The options.</param>
+            <param name="logger">The logger.</param>
+            <param name="lifetime">The host application lifetime.</param>
+            <param name="middlewares">The job middlewares.</param>
+        </member>
+        <member name="M:JG.WorkerKit.Internal.WorkerKitHostedService.StartAsync(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:JG.WorkerKit.Internal.WorkerKitHostedService.StopAsync(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:JG.WorkerKit.JobContext">
+            <summary>
+            Context for job execution.
+            </summary>
+        </member>
+        <member name="M:JG.WorkerKit.JobContext.#ctor(System.Int32,System.DateTime,System.Guid)">
+            <summary>
+            Initializes a new instance of the <see cref="T:JG.WorkerKit.JobContext"/> struct.
+            </summary>
+            <param name="attemptNumber">The attempt number.</param>
+            <param name="enqueueTime">The enqueue time.</param>
+            <param name="correlationId">The correlation ID.</param>
+        </member>
+        <member name="P:JG.WorkerKit.JobContext.AttemptNumber">
+            <summary>
+            Gets the attempt number.
+            </summary>
+        </member>
+        <member name="P:JG.WorkerKit.JobContext.EnqueueTime">
+            <summary>
+            Gets the enqueue time.
+            </summary>
+        </member>
+        <member name="P:JG.WorkerKit.JobContext.CorrelationId">
+            <summary>
+            Gets the correlation ID.
+            </summary>
+        </member>
+        <member name="T:JG.WorkerKit.JobOptions">
+            <summary>
+            Options for a job.
+            </summary>
+        </member>
+        <member name="F:JG.WorkerKit.JobOptions.Default">
+            <summary>
+            Gets the default job options.
+            </summary>
+        </member>
+        <member name="P:JG.WorkerKit.JobOptions.Priority">
+            <summary>
+            Gets or sets the job priority.
+            </summary>
+        </member>
+        <member name="P:JG.WorkerKit.JobOptions.MaxRetries">
+            <summary>
+            Gets or sets the maximum number of retries.
+            </summary>
+        </member>
+        <member name="P:JG.WorkerKit.JobOptions.Timeout">
+            <summary>
+            Gets or sets the job timeout.
+            </summary>
+        </member>
+        <member name="P:JG.WorkerKit.JobOptions.RetryDelay">
+            <summary>
+            Gets or sets the retry delay strategy.
+            </summary>
+        </member>
+        <member name="P:JG.WorkerKit.JobOptions.EnableDeadLetter">
+            <summary>
+            Gets or sets whether to enable dead letter handling.
+            </summary>
+        </member>
+        <member name="T:JG.WorkerKit.JobPriority">
+            <summary>
+            Represents the priority of a job.
+            </summary>
+        </member>
+        <member name="F:JG.WorkerKit.JobPriority.Low">
+            <summary>
+            Low priority.
+            </summary>
+        </member>
+        <member name="F:JG.WorkerKit.JobPriority.Normal">
+            <summary>
+            Normal priority.
+            </summary>
+        </member>
+        <member name="F:JG.WorkerKit.JobPriority.Critical">
+            <summary>
+            Critical priority.
+            </summary>
+        </member>
+        <member name="T:JG.WorkerKit.RetryDelayStrategy">
+            <summary>
+            Represents the retry delay strategy.
+            </summary>
+        </member>
+        <member name="F:JG.WorkerKit.RetryDelayStrategy.Fixed">
+            <summary>
+            Fixed delay.
+            </summary>
+        </member>
+        <member name="F:JG.WorkerKit.RetryDelayStrategy.Linear">
+            <summary>
+            Linear backoff.
+            </summary>
+        </member>
+        <member name="F:JG.WorkerKit.RetryDelayStrategy.ExponentialWithJitter">
+            <summary>
+            Exponential backoff with jitter.
+            </summary>
+        </member>
+        <member name="T:JG.WorkerKit.RetryPolicy">
+            <summary>
+            Represents a retry policy.
+            </summary>
+        </member>
+        <member name="M:JG.WorkerKit.RetryPolicy.#ctor(System.Int32,JG.WorkerKit.RetryDelayStrategy,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:JG.WorkerKit.RetryPolicy"/> struct.
+            </summary>
+            <param name="maxRetries">The maximum number of retries.</param>
+            <param name="delayStrategy">The delay strategy.</param>
+            <param name="initialDelay">The initial delay.</param>
+            <param name="maxDelay">The maximum delay.</param>
+        </member>
+        <member name="P:JG.WorkerKit.RetryPolicy.MaxRetries">
+            <summary>
+            Gets the maximum number of retries.
+            </summary>
+        </member>
+        <member name="P:JG.WorkerKit.RetryPolicy.DelayStrategy">
+            <summary>
+            Gets the delay strategy.
+            </summary>
+        </member>
+        <member name="P:JG.WorkerKit.RetryPolicy.InitialDelay">
+            <summary>
+            Gets the initial delay.
+            </summary>
+        </member>
+        <member name="P:JG.WorkerKit.RetryPolicy.MaxDelay">
+            <summary>
+            Gets the maximum delay.
+            </summary>
+        </member>
+        <member name="M:JG.WorkerKit.RetryPolicy.Exponential(System.Int32,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
+            <summary>
+            Creates an exponential retry policy.
+            </summary>
+            <param name="maxRetries">The maximum number of retries.</param>
+            <param name="initialDelay">The initial delay.</param>
+            <param name="maxDelay">The maximum delay.</param>
+            <returns>A retry policy.</returns>
+        </member>
+        <member name="M:JG.WorkerKit.RetryPolicy.Fixed(System.Int32,System.TimeSpan)">
+            <summary>
+            Creates a fixed retry policy.
+            </summary>
+            <param name="maxRetries">The maximum number of retries.</param>
+            <param name="delay">The fixed delay.</param>
+            <returns>A retry policy.</returns>
+        </member>
+        <member name="M:JG.WorkerKit.RetryPolicy.Linear(System.Int32,System.TimeSpan,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Creates a linear retry policy.
+            </summary>
+            <param name="maxRetries">The maximum number of retries.</param>
+            <param name="initialDelay">The initial delay.</param>
+            <param name="increment">The delay increment.</param>
+            <param name="maxDelay">The maximum delay.</param>
+            <returns>A retry policy.</returns>
+        </member>
+        <member name="T:JG.WorkerKit.ScheduleEntry">
+            <summary>
+            Represents a schedule entry for a recurring job.
+            </summary>
+        </member>
+        <member name="M:JG.WorkerKit.ScheduleEntry.#ctor(System.Type,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:JG.WorkerKit.ScheduleEntry"/> class.
+            </summary>
+            <param name="jobType">The job type.</param>
+            <param name="cronExpression">The cron expression.</param>
+        </member>
+        <member name="M:JG.WorkerKit.ScheduleEntry.#ctor(System.Type,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:JG.WorkerKit.ScheduleEntry"/> class.
+            </summary>
+            <param name="jobType">The job type.</param>
+            <param name="interval">The interval.</param>
+        </member>
+        <member name="P:JG.WorkerKit.ScheduleEntry.JobType">
+            <summary>
+            Gets the job type.
+            </summary>
+        </member>
+        <member name="P:JG.WorkerKit.ScheduleEntry.CronExpression">
+            <summary>
+            Gets the cron expression.
+            </summary>
+        </member>
+        <member name="P:JG.WorkerKit.ScheduleEntry.Interval">
+            <summary>
+            Gets the interval.
+            </summary>
+        </member>
+        <member name="P:JG.WorkerKit.ScheduleEntry.IsCron">
+            <summary>
+            Gets a value indicating whether this is a cron-based schedule.
+            </summary>
+        </member>
+        <member name="T:JG.WorkerKit.CronExpression">
+            <summary>
+            Represents a cron expression.
+            </summary>
+        </member>
+        <member name="M:JG.WorkerKit.CronExpression.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:JG.WorkerKit.CronExpression"/> class.
+            </summary>
+            <param name="expression">The cron expression.</param>
+        </member>
+        <member name="M:JG.WorkerKit.CronExpression.GetNextOccurrence(System.DateTime)">
+            <summary>
+            Gets the next occurrence after the specified date.
+            </summary>
+            <param name="after">The date after which to find the next occurrence.</param>
+            <returns>The next occurrence.</returns>
+        </member>
+        <member name="T:JG.WorkerKit.WorkerKitOptions">
+            <summary>
+            Options for configuring the WorkerKit.
+            </summary>
+        </member>
+        <member name="P:JG.WorkerKit.WorkerKitOptions.WorkerCount">
+            <summary>
+            Gets or sets the number of worker threads.
+            </summary>
+        </member>
+        <member name="P:JG.WorkerKit.WorkerKitOptions.QueueCapacity">
+            <summary>
+            Gets or sets the capacity of the job queue.
+            </summary>
+        </member>
+        <member name="P:JG.WorkerKit.WorkerKitOptions.ShutdownTimeout">
+            <summary>
+            Gets or sets the shutdown timeout.
+            </summary>
+        </member>
+        <member name="P:JG.WorkerKit.WorkerKitOptions.DefaultRetryPolicy">
+            <summary>
+            Gets or sets the default retry policy.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.WorkerKitServiceCollectionExtensions">
+            <summary>
+            Extension methods for <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> to register WorkerKit services.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.WorkerKitServiceCollectionExtensions.AddWorkerKit(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{JG.WorkerKit.WorkerKitOptions})">
+            <summary>
+            Adds WorkerKit services to the service collection.
+            </summary>
+            <param name="services">The service collection.</param>
+            <param name="configure">An action to configure the options.</param>
+            <returns>The service collection.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.WorkerKitServiceCollectionExtensions.AddJob``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds a job handler to the service collection.
+            </summary>
+            <typeparam name="TJob">The type of the job handler.</typeparam>
+            <typeparam name="TData">The type of the job data.</typeparam>
+            <param name="services">The service collection.</param>
+            <returns>The service collection.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.WorkerKitServiceCollectionExtensions.AddRecurringJob``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
+            <summary>
+            Adds a recurring job to the service collection.
+            </summary>
+            <typeparam name="TJob">The type of the scheduled task.</typeparam>
+            <param name="services">The service collection.</param>
+            <param name="cronExpression">The cron expression.</param>
+            <returns>The service collection.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.WorkerKitServiceCollectionExtensions.AddRecurringJob``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.TimeSpan)">
+            <summary>
+            Adds a recurring job to the service collection.
+            </summary>
+            <typeparam name="TJob">The type of the scheduled task.</typeparam>
+            <param name="services">The service collection.</param>
+            <param name="interval">The interval.</param>
+            <returns>The service collection.</returns>
+        </member>
+    </members>
+</doc>

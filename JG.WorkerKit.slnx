@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/JG.WorkerKit/JG.WorkerKit.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/JG.WorkerKit.Tests/JG.WorkerKit.Tests.csproj" />
+  </Folder>
+</Solution>

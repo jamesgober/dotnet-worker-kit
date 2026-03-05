@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>JG.WorkerKit</id>
+    <version>1.0.0</version>
+    <authors>James Gober</authors>
+    <license type="expression">Apache-2.0</license>
+    <licenseUrl>https://licenses.nuget.org/Apache-2.0</licenseUrl>
+    <readme>README.md</readme>
+    <description>A background job queue and scheduled task runner for .NET 8.</description>
+    <tags>background jobs queue scheduler cron</tags>
+    <repository type="git" url="https://github.com/jamesgober/dotnet-worker-kit" commit="0bbcfaf1807c4748cb768a16287abf817f827af1" />
+    <dependencies>
+      <group targetFramework="net8.0">
+        <dependency id="Microsoft.Extensions.Hosting" version="8.0.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Dev\libs\dotnet\dotnet-worker-kit\src\JG.WorkerKit\bin\Release\net8.0\JG.WorkerKit.pdb" target="lib\net8.0\JG.WorkerKit.pdb" />
+  </files>
+</package>
